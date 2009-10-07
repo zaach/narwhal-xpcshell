@@ -1,0 +1,31 @@
+#!/bin/bash
+
+if [ -f $(which xpcshell) ]; then
+  echo "xpcshell already in PATH. Bye!"
+  exit
+fi
+
+MODULE_DIR=$(readlink -f "$(dirname "$0")/../" )
+
+URL="http://releases.mozilla.org/pub/mozilla.org/xulrunner/releases/1.9.1.3/sdk/xulrunner-1.9.1.3.en-US."
+
+if [[ $OSTYPE == linux* ]]; then
+  # Linux
+  URL=$URL"linux-i686.sdk.tar.bz2"
+else if [[ $OSTYPE == darwin* ]]; then
+  # Mac OS X 
+  URL=$URL"mac-i386.sdk.tar.bz2"
+  fi
+fi
+
+if [ -d xulrunner-sdk ]; then
+  echo "XULRunner SDK found. Skipping download."
+else
+  wget $URL -O xulrunner-sdk.tar.bz2
+  tar xvjf xulrunner-sdk.tar.bz2
+  rm xulrunner-sdk.tar.bz2
+fi
+
+echo "Installing xpcshell script."
+sudo ln -s $MODULE_DIR/bin/xpcshell /usr/local/bin/xpcshell
+

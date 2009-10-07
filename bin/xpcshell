@@ -1,0 +1,9 @@
+#!/bin/bash
+MODULE_DIR=$(readlink -f "$(dirname "$0")/../" )
+
+if [ -d "$MODULE_DIR"/xulrunner-sdk ]; then
+  exec "$MODULE_DIR"/xulrunner-sdk/bin/run-mozilla.sh "$MODULE_DIR"/xulrunner-sdk/bin/xpcshell "$@"
+else
+  echo "Oops. Run installer to setup xpcshell: $MODULE_DIR/bin/install"
+fi
+

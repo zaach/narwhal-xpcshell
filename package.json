@@ -1,0 +1,21 @@
+{
+  "name": "narwhal-xpcshell",
+  "author": "Zach Carter (http://zaa.ch)",
+  "email": "zack.carter@gmail.com",
+  "keywords": [
+      "narwhal",
+      "engine",
+      "xulrunner",
+      "xpcshell",
+      "mozilla",
+      "spidermonkey"
+  ],
+  "engine": "xpcshell",
+  "dependencies": [
+      "narwhal-xulrunner",
+      "narwhal"
+  ],
+  "githubName": "narwhal-xpcshell",
+  "type": "zip",
+  "location": "http://github.com/zaach/narwhal-xpcshell/zipball/master"
+}
