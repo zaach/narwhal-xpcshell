@@ -33,10 +33,11 @@ export NARWHAL_HOME
 export NARWHAL_ENGINE_HOME
 
 # uses rlwrap (readline wrapper) if present
-if [ -f $(which xpcshell) ]; then
+if [ -f "$(which xpcshell)" ]; then
   SHELL="$(which rlwrap) xpcshell"
 else
-  SHELL="$(which rlwrap) $(readlink -f "$(dirname "$0")")/xpcshell"
+MODULE_DIR=$(cd -P -- "$(dirname -- "$0")/../" && pwd -P) 
+  SHELL="$(which rlwrap) $(cd -P -- "$(dirname -- "$0")" && pwd -P)/xpcshell"
 fi
 
 # drop into shell if there are no additional arguments

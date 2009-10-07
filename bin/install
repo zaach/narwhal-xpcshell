@@ -1,11 +1,11 @@
 #!/bin/bash
 
-if [ -f $(which xpcshell) ]; then
+if [ -f "$(which xpcshell)" ]; then
   echo "xpcshell already in PATH. Bye!"
   exit
 fi
 
-MODULE_DIR=$(readlink -f "$(dirname "$0")/../" )
+MODULE_DIR=$(cd -P -- "$(dirname -- "$0")/../" && pwd -P) 
 
 URL="http://releases.mozilla.org/pub/mozilla.org/xulrunner/releases/1.9.1.3/sdk/xulrunner-1.9.1.3.en-US."
 
@@ -21,8 +21,11 @@ fi
 if [ -d xulrunner-sdk ]; then
   echo "XULRunner SDK found. Skipping download."
 else
-  wget $URL -O xulrunner-sdk.tar.bz2
-  tar xvjf xulrunner-sdk.tar.bz2
-  rm xulrunner-sdk.tar.bz2
+  curl $URL -o "$MODULE_DIR"/xulrunner-sdk.tar.bz2
+  tar xvjf "$MODULE_DIR"/xulrunner-sdk.tar.bz2
+  rm "$MODULE_DIR"/xulrunner-sdk.tar.bz2
+  if [[ $OSTYPE == darwin* ]]; then
+    cp /usr/lib/libsqlite3.dylib "$MODULE_DIR"/xulrunner-sdk/bin/libsqlite3.dylib 
+  fi
 fi
 

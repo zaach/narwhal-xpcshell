@@ -1,5 +1,5 @@
 #!/bin/bash
-MODULE_DIR=$(readlink -f "$(dirname "$0")/../" )
+MODULE_DIR=$(cd -P -- "$(dirname -- "$0")/../" && pwd -P) 
 
 if [ -d "$MODULE_DIR"/xulrunner-sdk ]; then
   exec "$MODULE_DIR"/xulrunner-sdk/bin/run-mozilla.sh "$MODULE_DIR"/xulrunner-sdk/bin/xpcshell "$@"
