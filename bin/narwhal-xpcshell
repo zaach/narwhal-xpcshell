@@ -22,12 +22,6 @@ if [ "$JS_PATH" ]; then
 	NARWHAL_PATH="$NARWHAL_PATH:$JS_PATH"
 fi
 
-# collection arguments and exporting
-NARWHAL_ARGUMENTS=""
-for arg in $*; do
-    NARWHAL_ARGUMENTS=$NARWHAL_ARGUMENTS" "$arg
-done;
-
 export NARWHAL_PATH
 export NARWHAL_HOME
 export NARWHAL_ENGINE_HOME
@@ -36,7 +30,6 @@ export NARWHAL_ENGINE_HOME
 if [ -f "$(which xpcshell)" ]; then
   SHELL="$(which rlwrap) xpcshell"
 else
-MODULE_DIR=$(cd -P -- "$(dirname -- "$0")/../" && pwd -P) 
   SHELL="$(which rlwrap) $(cd -P -- "$(dirname -- "$0")" && pwd -P)/xpcshell"
 fi
 
