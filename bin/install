@@ -18,12 +18,13 @@ else if [[ $OSTYPE == darwin* ]]; then
   fi
 fi
 
-if [ -d xulrunner-sdk ]; then
+if [ -d "$MODULE_DIR"/xulrunner-sdk ]; then
   echo "XULRunner SDK found. Skipping download."
 else
   curl $URL -o "$MODULE_DIR"/xulrunner-sdk.tar.bz2
   tar xvjf "$MODULE_DIR"/xulrunner-sdk.tar.bz2
   rm "$MODULE_DIR"/xulrunner-sdk.tar.bz2
+  mv xulrunner-sdk "$MODULE_DIR"/
   if [[ $OSTYPE == darwin* ]]; then
     cp /usr/lib/libsqlite3.dylib "$MODULE_DIR"/xulrunner-sdk/bin/libsqlite3.dylib 
   fi
