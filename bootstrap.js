@@ -2,9 +2,12 @@
  * Bootstrap file for the XPCShell engine.
  */
 (function(rawGlobal, evalGlobal) {
-    const Cc = Components.classes;
-    const Ci = Components.interfaces;
-    const Cu = Components.utils;
+
+    rawGlobal.Cc = Components.classes;
+    rawGlobal.Ci = Components.interfaces;
+    rawGlobal.Cu = Components.utils;
+    rawGlobal.Cr = Components.results;
+    rawGlobal.CC = Components.Constructor;
     const Env = Cc["@mozilla.org/process/environment;1"].getService(Ci.nsIEnvironment);
 
     var moduleScopingEnabled = false;
